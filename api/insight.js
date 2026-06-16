@@ -1,7 +1,7 @@
 //Gemini text insights for the api response serverless func
 import axios from "axios";
 
-export async function handler (req, res){
+async function handler (req, res){
 
     const { temperature, weatherCode, windSpeed } = req.body;
 
@@ -38,3 +38,5 @@ export async function handler (req, res){
     }
 
 }
+
+export default handler
