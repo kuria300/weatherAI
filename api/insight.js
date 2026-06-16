@@ -7,19 +7,22 @@ export async function handler (req, res){
 
     try{
 
-        const response = await axios.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent', 
+        const response = await axios.post(
+            'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
             {
-             headers: {
+                contents: [{
+                parts: [{ 
+                    text: `Give a one-sentence weather insight for: ${temperature}°C, weather code ${weatherCode}, wind ${windSpeed}km/h.` 
+                }]
+                }]
+            },
+            {
+                headers: {
                 "Content-Type": "application/json",
                 "x-goog-api-key": process.env.GEMINI_API_KEY,
-            },
-          }, 
-          {
-            contents: [{
-            parts: [{ text:`Give a one-sentence insight for: ${temperature}°C, weather code ${weatherCode}, wind ${windSpeed}km/h.` }]
-            }],
-        },
-        )
+                },
+            }
+            );
          
         console.log(response)
          const insight = response.data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "No insight available.";
