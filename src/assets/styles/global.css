@@ -1,0 +1,18 @@
+@import "tailwindcss"; 
+
+
+@theme {
+    --color-primary: #000e27;
+}
+
+@layer base {
+  body {
+    @apply w-full h-full;
+  }
+}   
+
+@layer utilities{
+    .loading-icon{
+        @apply flex items-center justify-center min-h-screen flex-col gap-4
+    }
+}
